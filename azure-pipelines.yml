@@ -9,8 +9,8 @@ trigger:
 
 # runs on a Microsoft-hosted Linux machine
 pool:
-  #vmImage: ubuntu-latest
-  vmImage: windows-latest
+  vmImage: ubuntu-latest
+
 
 # can change it to vmImage: "windows-latest"
 
@@ -28,3 +28,11 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+#Add more tasks for building, testing, publishing, or deploying your app
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: "JaCoCo"
+    summaryFileLocation: "$(System.DefaultWorkingDirectory)/**/site/jacoco/jacoco.xml"
+    reportDirectory: "$(System.DefaultWorkingDirectory)/**/site/jacoco"
+    failIfCoverageEmpty: true
