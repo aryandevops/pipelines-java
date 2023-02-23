@@ -3,12 +3,20 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+# whenever the team pushes a change to the main branch of your repo or creates a pull request.
 trigger:
 - main
 
+# runs on a Microsoft-hosted Linux machine
 pool:
-  vmImage: ubuntu-latest
+  #vmImage: ubuntu-latest
+  vmImage: windows-latest
 
+# can change it to vmImage: "windows-latest"
+
+# Microsoft-hosted agents already include SDKs and tools for various development languages
+
+#Single step to run the Mavern task
 steps:
 - task: Maven@3
   inputs:
